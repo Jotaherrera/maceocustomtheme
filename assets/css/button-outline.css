@@ -1,6 +1,67 @@
+:root {
+  --primary: #009cff;
+  --secondary: #777777;
+  --light: #f8f8f8;
+  --dark: #252525;
+}
+
 .wp-block-button.is-style-outline
-	> .wp-block-button__link:not(.has-text-color, .has-background):hover {
-	background-color: var(--wp--preset--color--contrast-2, var(--wp--preset--color--contrast, transparent));
-	color: var(--wp--preset--color--base);
-	border-color: var(--wp--preset--color--contrast-2, var(--wp--preset--color--contrast, currentColor));
+  > .wp-block-button__link:not(.has-text-color, .has-background):hover {
+  background-color: var(
+    --wp--preset--color--contrast-2,
+    var(--wp--preset--color--contrast, transparent)
+  );
+  color: var(--wp--preset--color--base);
+  border-color: var(
+    --wp--preset--color--contrast-2,
+    var(--wp--preset--color--contrast, currentColor)
+  );
+}
+
+.nav .current-menu-item a {
+  color: #252525 !important;
+}
+
+/*** Footer ***/
+.footer .btn.btn-link {
+  color: var(--secondary);
+  font-weight: normal;
+  text-transform: capitalize;
+  transition: 0.3s;
+  text-decoration: none !important;
+}
+
+.footer .btn.btn-link::before {
+  position: relative;
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: var(--secondary);
+  margin-right: 10px;
+  text-decoration: none !important;
+}
+
+.footer .btn.btn-link:hover {
+  color: var(--primary);
+  letter-spacing: 1px;
+  box-shadow: none;
+}
+
+.footer a:hover,
+.footer :focus,
+.footer a:active {
+  text-decoration: none;
+}
+
+@media (max-width: 1200px) {
+  .header_row {
+    display: none !important;
+  }
+  .header_image_title {
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  .main_header {
+    justify-content: center !important;
+  }
 }
