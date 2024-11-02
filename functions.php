@@ -12,20 +12,21 @@
  * Register block styles.
  */
 
-if ( ! function_exists( 'maceocustomtheme_block_styles' ) ) :
+if (!function_exists('maceocustomtheme_block_styles')):
 	/**
 	 * Register custom block styles
 	 *
 	 * @since Twenty Twenty-Four 1.0
 	 * @return void
 	 */
-	function maceocustomtheme_block_styles() {
+	function maceocustomtheme_block_styles()
+	{
 
 		register_block_style(
 			'core/details',
 			array(
-				'name'         => 'arrow-icon-details',
-				'label'        => __( 'Arrow icon', 'maceocustomtheme' ),
+				'name' => 'arrow-icon-details',
+				'label' => __('Arrow icon', 'maceocustomtheme'),
 				/*
 				 * Styles for the custom Arrow icon style of the Details block
 				 */
@@ -47,8 +48,8 @@ if ( ! function_exists( 'maceocustomtheme_block_styles' ) ) :
 		register_block_style(
 			'core/post-terms',
 			array(
-				'name'         => 'pill',
-				'label'        => __( 'Pill', 'maceocustomtheme' ),
+				'name' => 'pill',
+				'label' => __('Pill', 'maceocustomtheme'),
 				/*
 				 * Styles variation for post terms
 				 * https://github.com/WordPress/gutenberg/issues/24956
@@ -70,8 +71,8 @@ if ( ! function_exists( 'maceocustomtheme_block_styles' ) ) :
 		register_block_style(
 			'core/list',
 			array(
-				'name'         => 'checkmark-list',
-				'label'        => __( 'Checkmark', 'maceocustomtheme' ),
+				'name' => 'checkmark-list',
+				'label' => __('Checkmark', 'maceocustomtheme'),
 				/*
 				 * Styles for the custom checkmark list block style
 				 * https://github.com/WordPress/gutenberg/issues/51480
@@ -89,8 +90,8 @@ if ( ! function_exists( 'maceocustomtheme_block_styles' ) ) :
 		register_block_style(
 			'core/navigation-link',
 			array(
-				'name'         => 'arrow-link',
-				'label'        => __( 'With arrow', 'maceocustomtheme' ),
+				'name' => 'arrow-link',
+				'label' => __('With arrow', 'maceocustomtheme'),
 				/*
 				 * Styles for the custom arrow nav link block style
 				 */
@@ -107,8 +108,8 @@ if ( ! function_exists( 'maceocustomtheme_block_styles' ) ) :
 		register_block_style(
 			'core/heading',
 			array(
-				'name'         => 'asterisk',
-				'label'        => __( 'With asterisk', 'maceocustomtheme' ),
+				'name' => 'asterisk',
+				'label' => __('With asterisk', 'maceocustomtheme'),
 				'inline_style' => "
 				.is-style-asterisk:before {
 					content: '';
@@ -144,20 +145,21 @@ if ( ! function_exists( 'maceocustomtheme_block_styles' ) ) :
 	}
 endif;
 
-add_action( 'init', 'maceocustomtheme_block_styles' );
+add_action('init', 'maceocustomtheme_block_styles');
 
 /**
  * Enqueue block stylesheets.
  */
 
-if ( ! function_exists( 'maceocustomtheme_block_stylesheets' ) ) :
+if (!function_exists('maceocustomtheme_block_stylesheets')):
 	/**
 	 * Enqueue custom block stylesheets
 	 *
 	 * @since Twenty Twenty-Four 1.0
 	 * @return void
 	 */
-	function maceocustomtheme_block_stylesheets() {
+	function maceocustomtheme_block_stylesheets()
+	{
 		/**
 		 * The wp_enqueue_block_style() function allows us to enqueue a stylesheet
 		 * for a specific block. These will only get loaded when the block is rendered
@@ -170,37 +172,72 @@ if ( ! function_exists( 'maceocustomtheme_block_stylesheets' ) ) :
 			'core/button',
 			array(
 				'handle' => 'maceocustomtheme-button-style-outline',
-				'src'    => get_parent_theme_file_uri( 'assets/css/button-outline.css' ),
-				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
-				'path'   => get_parent_theme_file_path( 'assets/css/button-outline.css' ),
+				'src' => get_parent_theme_file_uri('assets/css/button-outline.css'),
+				'ver' => wp_get_theme(get_template())->get('Version'),
+				'path' => get_parent_theme_file_path('assets/css/button-outline.css'),
 			)
 		);
 	}
 endif;
 
-add_action( 'init', 'maceocustomtheme_block_stylesheets' );
+add_action('init', 'maceocustomtheme_block_stylesheets');
 
 /**
  * Register pattern categories.
  */
 
-if ( ! function_exists( 'maceocustomtheme_pattern_categories' ) ) :
+if (!function_exists('maceocustomtheme_pattern_categories')):
 	/**
 	 * Register pattern categories
 	 *
 	 * @since Twenty Twenty-Four 1.0
 	 * @return void
 	 */
-	function maceocustomtheme_pattern_categories() {
+	function maceocustomtheme_pattern_categories()
+	{
 
 		register_block_pattern_category(
 			'maceocustomtheme_page',
 			array(
-				'label'       => _x( 'Pages', 'Block pattern category', 'maceocustomtheme' ),
-				'description' => __( 'A collection of full page layouts.', 'maceocustomtheme' ),
+				'label' => _x('Pages', 'Block pattern category', 'maceocustomtheme'),
+				'description' => __('A collection of full page layouts.', 'maceocustomtheme'),
 			)
 		);
 	}
 endif;
 
-add_action( 'init', 'maceocustomtheme_pattern_categories' );
+function add_bootstrap_icons()
+{
+	wp_enqueue_style('bootstrap-icons', 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css');
+}
+add_action('wp_enqueue_scripts', 'add_bootstrap_icons');
+
+
+
+add_action('init', 'maceocustomtheme_pattern_categories');
+function bootstrap_css_js_cdn()
+{
+	wp_enqueue_style(
+		'bootstrap_css',
+		'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+		array(),
+		'4.1.3'
+	);
+
+	wp_enqueue_script(
+		'bootstrap_js',
+		'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js',
+		array('jquery'),
+		'4.1.3',
+		true
+	);
+}
+add_action('wp_enqueue_scripts', 'bootstrap_css_js_cdn');
+
+
+function add_font_awesome()
+{
+	wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+}
+add_action('wp_enqueue_scripts', 'add_font_awesome');
+
